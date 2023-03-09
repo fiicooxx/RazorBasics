@@ -21,9 +21,18 @@ namespace RazorWeb.Pages.Categories
 
         public async Task<IActionResult> OnPost()
         {
-            await _context.Categories.AddAsync(Category);
-            await _context.SaveChangesAsync();
-            return RedirectToPage("Index");
+            if (Category.Name == Category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError(string.Empty, "Values must be different");
+            }
+
+            if (ModelState.IsValid)
+            {
+                await _context.Categories.AddAsync(Category);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
     }
 }
