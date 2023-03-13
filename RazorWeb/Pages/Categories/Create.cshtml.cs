@@ -30,6 +30,7 @@ namespace RazorWeb.Pages.Categories
             {
                 await _context.Categories.AddAsync(Category);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
             return Page();

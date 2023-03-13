@@ -30,6 +30,7 @@ namespace RazorWeb.Pages.Categories
             {
                 _context.Categories.Remove(Category);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Category deleted successfully";
                 return RedirectToPage("Index");
             }
             return Page();
